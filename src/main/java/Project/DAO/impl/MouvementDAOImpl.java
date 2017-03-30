@@ -4,8 +4,11 @@ import Project.DAO.MouvementDAO;
 import Project.Model.Mouvement;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import java.io.Serializable;
 
+@Repository
 public class MouvementDAOImpl implements MouvementDAO {
 
     @Autowired
@@ -27,4 +30,6 @@ public class MouvementDAOImpl implements MouvementDAO {
     public void delete(Mouvement mouvement) {
         sessionFactory.getCurrentSession().remove(mouvement);
     }
+
+
 }

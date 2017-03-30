@@ -4,10 +4,14 @@ import Project.DAO.MouvementDAO;
 import Project.Model.Mouvement;
 import Project.Service.MouvementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Miya on 03/03/2017.
  */
+@Service
+@Transactional
 public class MouvementServiceImpl implements MouvementService{
 
     @Autowired

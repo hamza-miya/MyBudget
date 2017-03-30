@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
         @Override
         public User getById(long id, boolean lazy) {
-            return userDAO.getById(id);
+            return userDAO.getById(id, lazy);
         }
 
         @Override
