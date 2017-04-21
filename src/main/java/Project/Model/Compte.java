@@ -8,10 +8,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
-/**
- * Created by Miya on 02/02/2017.
- */
-
 @Entity
 @Table(name = "Compte")
 public class Compte implements Serializable {
@@ -36,4 +32,5 @@ public class Compte implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "compte")
     @Getter @Setter private List<Projet> projets;
+
 }

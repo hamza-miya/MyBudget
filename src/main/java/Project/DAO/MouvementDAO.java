@@ -10,4 +10,5 @@ public interface MouvementDAO {
 
     public void delete(Mouvement mouvement);
 
+    public void update(Mouvement mouvement);
 }

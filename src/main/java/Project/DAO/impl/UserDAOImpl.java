@@ -28,6 +28,7 @@ public class UserDAOImpl implements UserDAO {
 
         if (lazy) {
             Hibernate.initialize(user.getCompte().getMouvements());
+            Hibernate.initialize(user.getCompte().getProjets());
         }
 
         return user;

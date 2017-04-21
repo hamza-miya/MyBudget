@@ -12,10 +12,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-/**
- * Created by Miya on 02/02/2017.
- */
-
 @Entity
 @Table(name = "User")
 public class User implements Serializable, Validator {
@@ -38,7 +34,7 @@ public class User implements Serializable, Validator {
     @Getter @Setter private String email;
 
     @Column(name="mdp")
-    @Size(min = 6, max = 50)
+    @Size(min = 6, max = 255)
     @Getter @Setter private String mdp;
 
     @OneToOne(cascade={CascadeType.ALL}, fetch = FetchType.EAGER, mappedBy = "user")

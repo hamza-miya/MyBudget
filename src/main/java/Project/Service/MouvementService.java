@@ -9,4 +9,6 @@ public interface MouvementService {
     public Mouvement getById(long id);
 
     public void delete(Mouvement mouvement);
+
+    public void update(Mouvement mouvement);
 }

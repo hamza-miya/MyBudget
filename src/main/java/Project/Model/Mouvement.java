@@ -9,11 +9,7 @@ import org.springframework.validation.Validator;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-/**
- * Created by Miya on 02/02/2017.
- */
-
-@Entity(name = "Mouvement")
+@Entity
 @Table(name = "Mouvement")
 public class Mouvement implements Serializable, Validator {
 

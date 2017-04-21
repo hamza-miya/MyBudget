@@ -31,5 +31,10 @@ public class MouvementDAOImpl implements MouvementDAO {
         sessionFactory.getCurrentSession().remove(mouvement);
     }
 
+    @Override
+    public void update(Mouvement mouvement) {
+        sessionFactory.getCurrentSession().update(mouvement);
+    }
+
 
 }

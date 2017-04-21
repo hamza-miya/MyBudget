@@ -4,6 +4,7 @@ import Project.DAO.CompteDAO;
 import Project.Model.Compte;
 import Project.Model.Mouvement;
 import Project.Model.User;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

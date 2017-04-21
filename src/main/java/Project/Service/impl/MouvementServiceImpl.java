@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by Miya on 03/03/2017.
- */
 @Service
 @Transactional
 public class MouvementServiceImpl implements MouvementService{
@@ -30,5 +27,10 @@ public class MouvementServiceImpl implements MouvementService{
     @Override
     public void delete(Mouvement mouvement) {
         mouvementDAO.delete(mouvement);
+    }
+
+    @Override
+    public void update(Mouvement mouvement) {
+        mouvementDAO.update(mouvement);
     }
 }

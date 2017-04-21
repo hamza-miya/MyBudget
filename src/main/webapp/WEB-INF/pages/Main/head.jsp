@@ -12,6 +12,8 @@
     <link href="${anim}" rel="stylesheet" />
     <spring:url value="/resources/css/light-bootstrap-dashboard.css" var="fw" />
     <link href="${fw}" rel="stylesheet" />
+    <spring:url value="/resources/css/style-custom.css" var="stycust" />
+    <link href="${stycust}" rel="stylesheet" />
 
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 

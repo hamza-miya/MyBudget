@@ -10,6 +10,7 @@ import Project.Service.MouvementService;
 import Project.Service.UserService;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @SessionAttributes(value = "User", types = { User.class })
@@ -37,20 +41,6 @@ public class UserController {
             return "Main/connexion";
         }else
             return "redirect:/dashboard";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/dashboard")
-    public String dashboard(ModelMap modelMap, HttpSession httpSession) {
-        if (httpSession.getAttribute("userSession") == null) {
-            return "redirect:/";
-        }else {
-            //Get the list of mouvement
-            long idUserSession = (Long) httpSession.getAttribute("userSession");
-            User user = userService.getById(idUserSession, true);
-            modelMap.addAttribute("Mouvements", user.getCompte().getMouvements());
-            modelMap.addAttribute("Depenses", compteService.getMouvementBy(user.getCompte(), false));
-            return "Main/dashboard";
-        }
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")
@@ -73,7 +63,7 @@ public class UserController {
                 User userByEmail = userService.getByEmail(userLoginForm.getEmailLogin());
                 if (userByEmail != null) {
                     //test la correspondance du mot de passe saisi
-                    if (userByEmail.getMdp().equals(userLoginForm.getMdpLogin())){
+                    if (userByEmail.getMdp().equals(encodeSHA512(userLoginForm.getMdpLogin()))){
                         // Mise à jour de la session
                         httpSession.setAttribute("userSession", userByEmail.getId());
                         return "redirect:/dashboard";
@@ -124,7 +114,7 @@ public class UserController {
             return "Main/connexion";
         }
 
-        user.setMdp(userRegisterForm.getMdpRegister());
+        user.setMdp(encodeSHA512(userRegisterForm.getMdpRegister()));
         user.setEmail(userRegisterForm.getEmailRegister());
         user.setFname(userRegisterForm.getFnameRegister());
         user.setLname(userRegisterForm.getLnameRegister());
@@ -139,6 +129,10 @@ public class UserController {
         modelMap.addAttribute("newAccount", true);
 
         return "redirect:/";
+    }
+
+    private String encodeSHA512(String password) {
+        return new ShaPasswordEncoder(512).encodePassword(password, null);
     }
 
     @RequestMapping( method = RequestMethod.GET , value = "/deleteSession")
