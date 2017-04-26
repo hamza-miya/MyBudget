@@ -160,7 +160,6 @@ jQuery(document).ready(
                 },
                 dataType: "json",
                 success : function(response){
-                    console.log("response : "+response.NewProjetId);
                     var htmlProj = '<div class="col-md-3"><div class="card card-user"><div class="image" style="background-color: yellowgreen">' +
                         '<div class="row" style="text-align: right"><div class="col-md-6"></div><div class="col-md-6 nbIncr">' +
                         '<span class="montant_moisProj">+'+montantEp+'€</span></div></div><!-- img --></div><div class="content" style="min-height: 0;">' +
@@ -222,29 +221,21 @@ jQuery(document).ready(
 
                 var labelProj = '';
                 var montant_moisProj = '';
-                var montant_acquisProj = '';
                 var montant_objProj = '';
-
-                console.log($(this).parent().parent().find(".labelProj").text());
 
                 var idProj = $(this).val();
                 labelProj = $(this).parent().parent().find(".labelProj").text();
                 montant_moisProj = $(this).parent().parent().find(".montant_moisProj").text().replace(/\+/g,'');
                 montant_moisProj = montant_moisProj.replace(/€/g,'');
-                montant_acquisProj = $(this).parent().parent().find(".montant_acquisProj").text();
                 montant_objProj = $(this).parent().parent().find(".montant_objProj").text();
 
                 $(this).parent().parent().find(".labelProj").replaceWith(
                     '<input type="text" id="labelProj" class="form-control" value="'+labelProj+'">');
                 $(this).parent().parent().find(".montant_moisProj").replaceWith(
-                    '<input type="text" id="montant_moisProj" class="form-control" value="'+montant_moisProj+'">')
-                $(this).parent().parent().find(".montant_acquisProj").replaceWith(
-                    '<input type="text" id="montant_acquisProj" class="form-control" value="'+montant_acquisProj+'">')
+                    '<input type="text" id="montant_moisProj" class="form-control" value="'+montant_moisProj+'">');
                 $(this).parent().parent().find(".montant_objProj").replaceWith(
-                    '<input type="text" id="montant_objProj" class="form-control" value="'+montant_objProj+'">')
+                    '<input type="text" id="montant_objProj" class="form-control" value="'+montant_objProj+'">');
                 $(this).parent().find(".secondBtnSave").removeClass("invisible");
-                $(this).addClass("invisible");
-
             });
         }
 
@@ -302,26 +293,29 @@ jQuery(document).ready(
             $(".secondBtnSave").click(function(event) {
                 $(".secondBtnSave").prop("disabled", true);
                 var idProj = $(this).val();
+                var sBtnSave = $(this);
                 $.ajax({
                     url: '/ModifyProjet',
                     type: 'POST',
                     data: {
                         'label': $("#labelProj").val(),
                         'montant_mois': $("#montant_moisProj").val(),
-                        'montant_acquis': $("#montant_acquisProj").val(),
                         'montant_obj': $("#montant_objProj").val(),
                         'id': idProj
                     },
                     dataType: "json",
                     success: function (response) {
+                        var mObjProj = $("#montant_objProj").val();
+                        var mAcqProj = $("#montant_acquisProj").val();
+                        var mMoisProj = $("#montant_moisProj").val();
                         $('#montant_objProj').replaceWith('' +
-                            '<span class="montant_objProj">'+$("#montant_objProj").val()+'</span>');
-                        $('#montant_acquisProj').replaceWith('' +
-                            '<span class="montant_acquisProj">'+$("#montant_acquisProj").val()+'</span>');
+                            '<span class="montant_objProj">'+mObjProj+'</span>');
                         $('#montant_moisProj').replaceWith('' +
-                            '<span class="montant_moisProj">+'+$("#montant_moisProj").val()+'€</span>');
+                            '<span class="montant_moisProj">+'+mMoisProj+'€</span>');
                         $('#labelProj').replaceWith('' +
                             '<span class="labelProj">'+$("#labelProj").val()+'</span>');
+                        //sBtnSave.parent().parent().find(".projProgress").html('' +
+                            //'<progress value="'+mAcqProj+'" max="'+mObjProj+'"></progress>');
 
                         $.notify({
                             icon: 'pe-7s-check',
@@ -335,7 +329,7 @@ jQuery(document).ready(
                             }
                         });
                         $(".secondBtnSave").addClass("invisible");
-                        $(".secondBtnSave").parent().find(".modifProjBtn").removeClass("invisible");
+                        $(".secondBtnSave").parent().find(".modifProjBtn").prop("disabled", false);
 
                     },
                     error: function (response, statut, erreur) {
@@ -358,6 +352,21 @@ jQuery(document).ready(
                     }
                 });
             });
+        }
+
+        function simulateProjetListener(){
+            $('#progressInput').change(function () {
+
+                var nbMonthSimulate = $('#progressInput').val();
+
+                $('.each-projet').each(function () {
+                    var mAcquisSimu = $(this).find(".montant_acquisProj").text();
+                    var mMoisSimu = $(this).find(".montant_moisProj").text().replace(/\+/g,'');
+                    mMoisSimu = mMoisSimu.replace(/€/g,'');
+
+                });
+            });
+
         }
 
     });

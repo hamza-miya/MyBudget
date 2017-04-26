@@ -6,15 +6,17 @@ import Project.Model.User;
 import Project.Service.CompteService;
 import Project.Service.ProjetService;
 import Project.Service.UserService;
+import org.joda.time.DateTime;
+import org.joda.time.Months;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import sun.plugin.perf.PluginRollup;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @SessionAttributes(value = "User", types = { User.class })
@@ -37,6 +39,29 @@ public class ProjectController {
         Compte compte = user.getCompte();
         List<Projet> Projets = compte.getProjets();
 
+        //Incrementation of project
+        Date dateNow = new Date();
+        Calendar calx = Calendar.getInstance();
+
+        for (int i=0; i<Projets.size(); i++){ //for each project, check the creation date and increment Montant_acquis
+
+            calx.setTime(Projets.get(i).getDate_creation_projet()); // Creation date of project
+            Date dateCreaProj = calx.getTime(); // current date
+
+            DateTime start = new DateTime(dateCreaProj.getTime());
+            DateTime end = new DateTime(dateNow.getTime());
+            int nbMonths = Months.monthsBetween(start, end).getMonths(); //getting number of month between 2 dates
+
+            if (nbMonths>0){
+                float mMois = Projets.get(i).getMontant_epargneParMois();
+                float mresult = mMois*nbMonths; // Montant ajouté chaque mois X le nombre de mois depuis création
+
+                Projets.get(i).setMontant_acquis(mresult);
+                projetService.update(Projets.get(i));
+            }
+
+        }
+
         modelMap.addAttribute("Projets", Projets);
 
         return "Main/epargne";
@@ -47,7 +72,6 @@ public class ProjectController {
     public HashMap<String, Object> ModifyMouvement(@RequestParam(value = "id") long id,
                                                    @RequestParam(value = "montant_mois") float montant_mois,
                                                    @RequestParam(value = "montant_obj") float montant_obj,
-                                                   @RequestParam(value = "montant_acquis") float montant_acquis,
                                                    @RequestParam(value = "label") String label,
                                                    ModelMap modelMap,
                                                    HttpSession httpSession,
@@ -65,7 +89,7 @@ public class ProjectController {
             Projet projet = projetService.getById(id);
             projet.setMontant_objectif(montant_obj);
             projet.setMontant_epargneParMois(montant_mois);
-            projet.setMontant_acquis(montant_acquis);
+            //projet.setMontant_acquis(montant_acquis);
             projet.setLabel(label);
 
             projetService.update(projet);

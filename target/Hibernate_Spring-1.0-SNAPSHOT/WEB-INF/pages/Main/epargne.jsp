@@ -76,7 +76,7 @@
                 <div class="row" id="rowListProjet">
 
                     <c:forEach items="${Projets}" var="Projet">
-                        <div class="col-md-3">
+                        <div class="col-md-3 each-projet">
                             <div class="card card-user">
                                 <div class="image" style="background-color: yellowgreen">
                                     <div class="row" style="text-align: right">
@@ -87,7 +87,7 @@
                                     </div>
                                     <!-- img -->
                                 </div>
-                                <div class="content" style="min-height: 0;">
+                                <div class="content" style="min-height: 0; text-align: center;">
                                     <div class="author">
 
                                         <img class="avatar border-gray" src="/resources/img/tirelire-economie.jpg">
@@ -98,7 +98,9 @@
                                         </h4>
 
                                     </div>
-
+                                    <div class="projProgress">
+                                        <progress value="${Projet.montant_acquis}" max="${Projet.montant_objectif}"></progress>
+                                    </div>
                                 </div>
                                 <hr>
                                 <div class="text-center">
@@ -153,6 +155,8 @@
 
     </div>
 </div>
+
+<input type="hidden" id="" value="${SommeDepenses}"/>
 
 <%@ include file="foot.jsp" %>
 

@@ -33,13 +33,20 @@ public class Projet implements Serializable {
     @Column(name="echeance", columnDefinition = "datetime")
     @Getter @Setter private Date echeance;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="date_creation_projet", columnDefinition = "datetime")
+    @Getter @Setter private Date date_creation_projet;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_compte", nullable = false)
     @Getter @Setter private Compte compte;
 
-    public Projet(){}
+    public Projet(){
+        this.date_creation_projet = new Date();
+    }
 
     public Projet(String label, float montantObj, float montant_epargneParMois){
+        this();
         this.label = label;
         this.montant_objectif = montantObj;
         this.montant_epargneParMois = montant_epargneParMois;
