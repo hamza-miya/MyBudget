@@ -7,12 +7,12 @@ jQuery(document).ready(
 
         $(".modifMouvBtn").click(function(event) {
             //Replace TD with input and create new button for validation
-            var label = $(this).parent().parent().find(".labelTd").text();
-            $(this).parent().parent().find(".labelTd").html('' +
+            var label = $(this).parent().parent().parent().find(".labelTd").text();
+            $(this).parent().parent().parent().find(".labelTd").html('' +
                 '<input type="text" id="labelMouvModif" class="form-control" value="'+label+'">');
-            var montant = $(this).parent().parent().find(".montantTd").text();
+            var montant = $(this).parent().parent().parent().find(".montantTd").text();
             montant = montant.replace(/\s/g,'');
-            $(this).parent().parent().find(".montantTd").html('' +
+            $(this).parent().parent().parent().find(".montantTd").html('' +
                 '<input type="text" id="montantMouvModif" class="form-control" value="'+montant+'">');
             $(this).replaceWith('' +
                 '<button type="button" id="secondBtnOk" rel="tooltip" title="Enregistrer" ' +
