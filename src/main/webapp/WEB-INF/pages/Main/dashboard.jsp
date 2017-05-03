@@ -27,7 +27,7 @@
                 <li class="active">
                     <a href="/epargne">
                         <i class="pe-7s-graph1"></i>
-                        <p>Mon épargne</p>
+                        <p>Mes projets d'épargne</p>
                     </a>
                 </li>
             </ul>
@@ -63,15 +63,27 @@
             <div class="container-fluid">
                 <div class="row">
 
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="card">
-                            <div class="header">
-                                <h2 class="title">Tableau de bord </h2>
-                                <p class="category">Epargne potentielle : ${sessionScope.EpargneP}€</p>
-                                <br />
+                            <div class="row">
+                                <div class="col-md-8 col-xs-9">
+                                    <div class="header">
+                                        <h2 class="title">Dashboard </h2>
+                                        <p class="category">Epargne potentielle : ${sessionScope.EpargneP}€</p>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-3">
+                                    <div class="text-right botox">
+                                        <button type="button" class="btn chouf btn-primary" data-toggle="modal" data-target="#myModal">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="row">
 
@@ -144,25 +156,7 @@
                     </div>
 
                 </div>
-                <div class="row">
 
-                    <form id="FormAddMouv" class="">
-                        <div class="form-group">
-                            <label for="labelMouv">Désignation</label>
-                            <input type="text" id="labelMouv" class="form-control" placeholder="Ex : Loyer, Cinéma...">
-                        </div>
-                        <div class="form-group">
-                            <label for="montantMouv">Montant</label>
-                            <input type="number" id="montantMouv" class="form-control" placeholder="Ex : 350">
-                        </div>
-                        <div class="form-group">
-                            <input type="radio" name="signeMouv" value="-" checked><i class="pe-7s-less"></i>
-                            <input type="radio" name="signeMouv" value="+"><i class="pe-7s-plus"></i>
-                        </div>
-                        <button type="button" id="AddMouvBtn" class="btn btn-info btn-fill pull-right">Ajouter</button>
-                    </form>
-
-                </div>
             </div>
         </div>
         <footer class="footer">
@@ -173,6 +167,39 @@
             </div>
         </footer>
 
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Ajouter un mouvement</h4>
+            </div>
+            <div class="modal-body">
+                <form id="FormAddMouv" class="">
+                    <div class="form-group">
+                        <label for="labelMouv">Désignation</label>
+                        <input type="text" id="labelMouv" class="form-control" placeholder="Ex : Loyer, Cinéma...">
+                    </div>
+                    <div class="form-group">
+                        <label for="montantMouv">Montant</label>
+                        <input type="number" id="montantMouv" class="form-control" placeholder="Ex : 350">
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" name="signeMouv" value="-" checked><i class="pe-7s-less"></i>
+                        <input type="radio" name="signeMouv" value="+"><i class="pe-7s-plus"></i>
+                    </div>
+                    <button type="button" id="AddMouvBtn" class="btn btn-info btn-fill pull-right">Ajouter</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
 </div>
 

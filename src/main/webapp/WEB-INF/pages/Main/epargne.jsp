@@ -27,7 +27,7 @@
                 <li class="active">
                     <a href="/epargne">
                         <i class="pe-7s-graph1"></i>
-                        <p>Mon épargne</p>
+                        <p>Mes projets d'épargne</p>
                     </a>
                 </li>
             </ul>
@@ -44,7 +44,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/epargne">Mon Épargne</a>
+                    <a class="navbar-brand" href="/epargne">Mes projets d'épargne</a>
                 </div>
                 <div class="collapse navbar-collapse">
                    <ul class="nav navbar-nav navbar-right">
@@ -63,13 +63,26 @@
             <div class="container-fluid">
                 <div class="row">
 
-                    <div class="col-md-4">
+                    <div class="col-md-5 texte-center">
                         <div class="card">
-                            <div class="header">
-                                <h2 class="title">Mes Projets </h2>
-                                <p class="category">Epargne potentielle : ${sessionScope.EpargneP}€</p>
-                                <br />
+
+                            <div class="row">
+                                <div class="col-md-8 col-xs-9">
+                                    <div class="header">
+                                        <h2 class="title">Mes Projets </h2>
+                                        <p class="category">Epargne potentielle : ${sessionScope.EpargneP}€</p>
+                                        <br />
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-3">
+                                    <div class="text-right botox">
+                                        <button type="button" class="btn chouf btn-primary" data-toggle="modal" data-target="#myModal">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -120,26 +133,6 @@
 
                 </div>
 
-                <div class="row">
-
-                    <form id="FormAddProjet">
-                        <div class="form-group">
-                            <label for="labelProj">Désignation </label>
-                            <input type="text" id="labelProj" class="form-control" placeholder="Ex : Vacances, Voiture...">
-                        </div>
-                        <div class="form-group">
-                            <label for="montantEp">Montant épargné chaque mois </label>
-                            <input type="number" id="montantEp" class="form-control" placeholder="Ex : 100">
-                        </div>
-                        <div class="form-group">
-                            <label for="montantObj">Objectif à atteindre </label>
-                            <input type="number" id="montantObj" class="form-control" placeholder="Ex : 2300">
-                        </div>
-                        <button type="button" id="AddProjBtn" class="btn btn-info btn-fill pull-right">Ajouter</button>
-                    </form>
-
-                </div>
-
 
             </div>
         </div>
@@ -153,6 +146,39 @@
             </div>
         </footer>
 
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Ajouter un projet</h4>
+            </div>
+            <div class="modal-body">
+                <form id="FormAddProjet">
+                    <div class="form-group">
+                        <label for="labelProj">Désignation </label>
+                        <input type="text" id="labelProj" class="form-control" placeholder="Ex : Vacances, Voiture...">
+                    </div>
+                    <div class="form-group">
+                        <label for="montantEp">Montant épargné chaque mois </label>
+                        <input type="number" id="montantEp" class="form-control" placeholder="Ex : 100">
+                    </div>
+                    <div class="form-group">
+                        <label for="montantObj">Objectif à atteindre </label>
+                        <input type="number" id="montantObj" class="form-control" placeholder="Ex : 2300">
+                    </div>
+                    <button type="button" id="AddProjBtn" data-dismiss="modal" class="btn btn-info btn-fill pull-right">Ajouter</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
 </div>
 

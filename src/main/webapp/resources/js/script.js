@@ -88,7 +88,7 @@ jQuery(document).ready(
                 error : function(response, statut, erreur){
                     $.notify({
                         icon: 'pe-7s-info',
-                        message: "Veuillez saisir un montant sans lettres ni caractères spéciaux. <b>Merci :)</b>"
+                        message: "Veuillez remplir tous les champs et saisir un montant sans lettres ni caractères spéciaux. <b>Merci :)</b>"
 
                     },{
                         type: 'danger',
@@ -101,6 +101,7 @@ jQuery(document).ready(
                 },
                 complete : function(resultat, statut){
                     $("#AddMouvBtn").prop("disabled", false);
+                    $('#myModal').modal('toggle');
                 }
             });
         });
@@ -145,7 +146,7 @@ jQuery(document).ready(
                         align: "center"
                     }
                 });
-                return false;
+                return true;
             }
 
             $("#AddProjBtn").prop("disabled", true);
@@ -165,7 +166,11 @@ jQuery(document).ready(
                         '<span class="montant_moisProj">+'+montantEp+'€</span></div></div><!-- img --></div><div class="content" style="min-height: 0;">' +
                         '<div class="author"> <img class="avatar border-gray" src="/resources/img/tirelire-economie.jpg"> <h4 class="title">' +
                         '<span class="labelProj">'+label+'</span><br><small><span class="montant_acquisProj">0.0</span>€</small> / <small>' +
-                        '<span class="montant_objProj">'+montantObj+'</span>€</small> </h4></div></div><hr><div class="text-center">' +
+                        '<span class="montant_objProj">'+montantObj+'</span>€</small> </h4></div>' +
+                        '<div class="projProgress text-center">' +
+                        '<progress value="0" max="'+montantObj+'"></progress>' +
+                        '</div>' +
+                        '</div><hr><div class="text-center">' +
                         '<button type="button" rel="" value="'+response.NewProjetId+'" title="Modifier" class="modifProjBtn btn btn-info btn-simple btn-xs"> <i class="fa fa-edit"></i></button>' +
                         '<button type="button" rel="tooltip" value="'+response.NewProjetId+'" title="Enregistrer" class="secondBtnSave invisible btn btn-info btn-simple btn-xs"> <i class="fa fa-floppy-o"></i></button>' +
                         '<button type="button" rel="tooltip" value="'+response.NewProjetId+'" title="Supprimer" class="deleteProjBtn btn btn-danger btn-simple btn-xs"> <i class="fa fa-times"></i></button></div></div></div>';
@@ -206,6 +211,7 @@ jQuery(document).ready(
                 },
                 complete : function(resultat, statut){
                     $("#AddProjBtn").prop("disabled", false);
+                    $('#myModal').modal('toggle');
                 }
             });
         });
