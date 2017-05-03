@@ -12,6 +12,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+/**
+ * Utilisateur de la plateforme
+ */
 @Entity
 @Table(name = "User")
 public class User implements Serializable, Validator {

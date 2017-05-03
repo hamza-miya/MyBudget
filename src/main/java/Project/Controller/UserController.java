@@ -24,6 +24,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Ctrl permettant la gestion des session utilisateur, l'inscription, la connexion et les redirections
+ */
 @Controller
 @SessionAttributes(value = "User", types = { User.class })
 public class UserController {

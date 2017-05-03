@@ -9,6 +9,9 @@ import org.springframework.validation.Validator;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+/**
+ * Mouvement :  represente une entré ou une sorti d'argent dans le compte
+ */
 @Entity
 @Table(name = "Mouvement")
 public class Mouvement implements Serializable, Validator {

@@ -7,6 +7,9 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Projet d'épargne s'incrémentant chaque mois d'une somme définie
+ */
 @Entity
 @Table(name = "Projet")
 public class Projet implements Serializable {

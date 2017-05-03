@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+/**
+ * Compte utilisateur - configuration 1 : Un compte par utilisateur
+ */
 @Entity
 @Table(name = "Compte")
 public class Compte implements Serializable {

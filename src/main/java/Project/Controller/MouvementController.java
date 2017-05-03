@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
+/**
+ * Ctrl permettant la gestion des mouvements de compte : Ajout, modification, suppression, génération de graphique
+ */
 @Controller
 @SessionAttributes(value = "User", types = { User.class })
 public class MouvementController {
